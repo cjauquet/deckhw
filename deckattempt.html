@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<link type="text/css" rel="stylesheet" href="css/deck.css">
+  <head>
+    <title>
+      Deck of Cards
+    </title>
+  </head>
+ </head>
+  <body>
+    <div id="hidden">
+    <div id="centerinbox">
+      <h1>Deck 
+        <span class="of">of</span>
+        Cards
+      </h1>
+      <ul id="deck" class="collection">
+      </ul>
+      <button id="shuffle">Shuffle This Deck</button>
+     </div> 
+   </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            $('#hidden').delay(500).fadeIn(1500);
+        });
+    </script>
+    <script>
+      function Deck() {
+        var theDeck = this,
+          $deck = $('#deck'),
+          card;
+        this.suits = ['H', 'C', 'D', 'S'];
+        this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        $.each(this.suits, function(index, suit){
+          $.each(theDeck.ranks, function(index, rank){
+            card = new Card(suit, rank)
+            $deck.append(card.toHTML());
+          });
+        });
+      }
+      function Card(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+        this.toHTML = function() {
+          return '<li class="card">' + this.suit + '-' + this.rank + '</li>';
+        };
+      }
+      $('#shuffle').on('click', function() {
+        var rand, $rand;
+        var m = 52;
+         while(m) {
+          rand = Math.floor(Math.random() * m--);
+          $('li:eq(' + m + ')').after($('li:eq(' + rand + ')')).insertBefore($('li:eq(' + rand + ')'));
+          if(m) {
+
+          }
+      }
+      });
+      var deck = new Deck();
+
+      $('#deck')
+    </script>
+  </body>
+</html>
